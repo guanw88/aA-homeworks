@@ -34,7 +34,11 @@ class Simon
   end
 
   def require_sequence
-
+    seq.each do |color|
+      print "What is the next color in the sequence? (e.g. red, blue, green, yellow): "
+      user_input = gets.chomp
+      @game_over = true if color != user_input
+    end
   end
 
   def add_random_color
