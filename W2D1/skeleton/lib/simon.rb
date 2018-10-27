@@ -47,6 +47,6 @@ class Simon
   end
 
   def reset_game
-
+    initialize
   end
 end
