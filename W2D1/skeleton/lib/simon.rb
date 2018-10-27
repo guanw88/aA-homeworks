@@ -27,7 +27,10 @@ class Simon
   end
 
   def show_sequence
-
+    add_random_color
+    seq.each {|color| puts "The color is: #{color}"}
+    sleep(5)
+    system("clear")
   end
 
   def require_sequence
@@ -39,14 +42,19 @@ class Simon
   end
 
   def round_success_message
-
+    puts "Correct! Proceeding to next round..."
   end
 
   def game_over_message
-
+    puts "Game over!"
   end
 
   def reset_game
     initialize
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  game = Simon.new
+  game.play
 end
