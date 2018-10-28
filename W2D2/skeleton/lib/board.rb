@@ -1,4 +1,7 @@
 class Board
+
+  SCORE_CUPS = [6,13]
+
   attr_accessor :cups
 
   def initialize(name1 = "p1", name2 = "p2")
@@ -9,10 +12,8 @@ class Board
   def place_stones(num_stones = 4)
     stones = []
     num_stones.times {stones << :stone}
-    cups.each_index do |idx|
-      cups[idx] = stones unless idx == 6 || idx == 13
-    end
-    cups[6], cups[13] = [], []
+    cups.each_index {|idx| cups[idx] = stones unless SCORE_CUPS.include?(idx)}
+    SCORE_CUPS.each {|idx| cups[idx] = []}
   end
 
   def valid_move?(start_pos)
