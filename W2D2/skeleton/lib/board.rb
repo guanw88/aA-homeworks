@@ -1,3 +1,4 @@
+require 'byebug'
 class Board
 
   SCORE_CUPS = [6,13]
@@ -17,11 +18,23 @@ class Board
   end
 
   def valid_move?(start_pos)
-    raise "Invalid starting cup" if start_pos < 0 || start_pos > 13 || SCORE_CUPS.include?(start_pos)
-    raise "Starting cup is empty" if cups[start_pos].empty?
+    if start_pos < 0 || start_pos > 13 || SCORE_CUPS.include?(start_pos)
+      raise "Invalid starting cup"
+      return false
+    elsif cups[start_pos].empty?
+      raise "Starting cup is empty"
+      return false
+    end
+    true
   end
 
   def make_move(start_pos, current_player_name)
+    if valid_move?(start_pos)
+      stones_in_hand = cups[start_pos]
+      cups[start_pos] = []
+    else
+
+    end
   end
 
   def next_turn(ending_cup_idx)
