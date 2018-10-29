@@ -81,5 +81,12 @@ class Board
   end
 
   def winner
+    if cups[6].length > cups[13].length
+      return name1
+    elsif cups[6].length < cups[13].length
+      return name2
+    else
+      return :draw
+    end
   end
 end
