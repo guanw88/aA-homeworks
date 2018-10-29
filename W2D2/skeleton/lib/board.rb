@@ -2,18 +2,20 @@ require 'byebug'
 class Board
 
   SCORE_CUPS = [6,13]
+  P1_SCORE_CUP = [6]
+  P2_SCORE_CUP = [13]
 
   attr_accessor :cups
 
   def initialize(name1 = "p1", name2 = "p2")
-    @cups = Array.new(14)
+    @cups = Array.new(14){Array.new}
     place_stones
   end
 
   def place_stones(num_stones = 4)
     stones = []
     num_stones.times {stones << :stone}
-    cups.each_index {|idx| cups[idx] = stones unless SCORE_CUPS.include?(idx)}
+    cups.each_index {|idx| cups[idx] += stones unless SCORE_CUPS.include?(idx)}
     SCORE_CUPS.each {|idx| cups[idx] = []}
   end
 
@@ -30,8 +32,15 @@ class Board
 
   def make_move(start_pos, current_player_name)
     if valid_move?(start_pos)
-      stones_in_hand = cups[start_pos]
+      stones_in_hand = cups[start_pos].dup
       cups[start_pos] = []
+      idx = start_pos
+      # debugger
+      until stones_in_hand.empty?
+        idx = (idx + 1) % 14
+        opposing_player_cup = 13
+        cups[idx] << stones_in_hand.pop unless idx == opposing_player_cup
+      end
     else
 
     end
