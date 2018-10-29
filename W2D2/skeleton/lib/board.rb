@@ -6,9 +6,12 @@ class Board
   P2_SCORE_CUP = [13]
 
   attr_accessor :cups
+  attr_reader :name1, :name2
 
   def initialize(name1 = "p1", name2 = "p2")
     @cups = Array.new(14){Array.new}
+    @name1 = name1
+    @name2 = name2
     place_stones
   end
 
@@ -35,19 +38,34 @@ class Board
       stones_in_hand = cups[start_pos].dup
       cups[start_pos] = []
       idx = start_pos
-      # debugger
       until stones_in_hand.empty?
         idx = (idx + 1) % 14
-        opposing_player_cup = 13
-        cups[idx] << stones_in_hand.pop unless idx == opposing_player_cup
+        cups[idx] << stones_in_hand.pop unless idx == opposing_player_goal(current_player_name)
       end
+      render
+      next_turn(idx)
     else
 
     end
   end
 
+  def opposing_player_goal(current_player_name)
+    if name1 == current_player_name
+      return 13
+    else
+      return 6
+    end
+  end
+
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
+    if cups[ending_cup_idx].length == 1 && ending_cup_idx != 6 && ending_cup_idx != 13
+      return :switch
+    elsif ending_cup_idx == 6 || ending_cup_idx == 13
+      return :prompt
+    else
+      return ending_cup_idx
+    end
   end
 
   def render
