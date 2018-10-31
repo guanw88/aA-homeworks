@@ -30,7 +30,16 @@ end
 #
 # Clever Octopus
 # Find the longest fish in O(n) time. The octopus can hold on to the longest fish that you have found so far while stepping through the array only once.
-#
+
+def clever_octopus
+  longest = ""
+  FISH_ARR.each_with_index do |el, idx|
+    longest = el if idx == 0
+    el.length > longest.length ? longest = el : longest
+  end
+  longest
+end
+
 # Dancing Octopus
 # Full of fish, the Octopus attempts Dance Dance Revolution. The game has tiles in the following directions:
 #
