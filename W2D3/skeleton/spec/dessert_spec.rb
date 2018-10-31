@@ -2,13 +2,13 @@ require 'rspec'
 require 'dessert'
 
 =begin
-Instructions: implement all of the pending specs (the `it` statements without blocks)! Be sure to look over the solutions when you're done.
+Instructions: implement all of the pending specs (the `it` statements without blocks)!
+Be sure to look over the solutions when you're done.
 =end
 
 describe Dessert do
-
-  subject(:cake) { Dessert.new("cake", 50, "Bob") }
-  let(:chef) { double("chef") }
+  let(:chef) { double("chef", :name => "Bob") }
+  subject(:cake) { Dessert.new("cake", 50, chef) }
 
   describe "#initialize" do
     it "sets a type" do
@@ -25,7 +25,7 @@ describe Dessert do
     end
 
     it "raises an argument error when given a non-integer quantity" do
-      expect{Dessert.new("cake","fifty","Bob")}.to raise_error(ArgumentError)
+      expect{Dessert.new("cake","fifty",chef)}.to raise_error(ArgumentError)
     end
   end
 
@@ -56,10 +56,18 @@ describe Dessert do
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name"
+    it "contains the titleized version of the chef's name" do
+      allow(chef).to receive(:name).and_return("Bob")
+      allow(chef).to receive(:titleize).and_return("Chef #{chef.name} the Great Baker")
+      expect(cake.serve).to include("Chef Bob the Great Baker")
+    end
   end
 
   describe "#make_more" do
-    it "calls bake on the dessert's chef with the dessert passed in"
+    it "calls bake on the dessert's chef with the dessert passed in" do
+      expect(chef).to receive(:bake).with(cake)
+      chef.bake(cake)
+    end
   end
+
 end
