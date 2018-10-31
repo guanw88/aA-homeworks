@@ -27,7 +27,11 @@ end
 
 # Dominant Octopus
 # Find the longest fish in O(n log n) time. Hint: You saw a sorting algorithm that runs in O(n log n) in the Sorting Demo. Remember that Big O is classified by the dominant term.
-#
+
+def dominant_octopus
+  FISH_ARR.sort_by(&:length)[-1]
+end
+
 # Clever Octopus
 # Find the longest fish in O(n) time. The octopus can hold on to the longest fish that you have found so far while stepping through the array only once.
 
