@@ -1,4 +1,7 @@
-# Tonight we're going to implement a basic LRU Cache using an array. This will be a simple implementation that doesn't use a hash-map or linked list. We will assume our input is limited to Fixnums, Strings, Arrays, Symbols, and Hashes. We will allow the user to set the size of the cache.
+# Tonight we're going to implement a basic LRU Cache using an array. This will be a
+# simple implementation that doesn't use a hash-map or linked list. We will assume
+# our input is limited to Fixnums, Strings, Arrays, Symbols, and Hashes. We will
+# allow the user to set the size of the cache.
 #
 # Ultimately, our LRU Cache should function as follows:
 #
@@ -23,11 +26,12 @@
 #   johnny_cache.show # => prints [[1, 2, 3, 4], :ring_of_fire, "I walk the line", {:a=>1, :b=>2, :c=>3}]
 
 class LRUCache
-  def initialize
+  def initialize(size)
+    @cache = Array.new(size, nil) #[nil, nil, nil, nil] with size = 4
   end
 
   def count
-    # returns number of elements currently in cache
+    @cache.reject{|el| el.nil?}.length # o(n) time because reject has to iterate through entire cache
   end
 
   def add(el)
@@ -39,6 +43,11 @@ class LRUCache
   end
 
   private
-  # helper methods go here!
+  def is_el_present?(el)
+    @cache.each do |el_in_cache|
+      return true if el == el_in_cache
+    end
+    false
+  end
 
 end
