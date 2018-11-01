@@ -55,7 +55,10 @@ RSpec.describe LRUCache do
   end
 
   describe "#show" do
-
-  end 
+    it "shows the cache when prompted" do
+      lrucache.add("I walk the line")
+      expect(lrucache.show).to eq([nil, nil, nil, "I walk the line"])
+    end
+  end
 
 end
