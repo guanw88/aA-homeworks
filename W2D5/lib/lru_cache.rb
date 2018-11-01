@@ -32,11 +32,11 @@ class LRUCache
     @cache = Array.new(size, nil) #[nil, nil, nil, nil] with size = 4
   end
 
-  def count
-    @cache.reject{|el| el.nil?}.length # o(n) time because reject has to iterate through entire cache
+  def count # o(n) time because reject has to iterate through entire cache
+    @cache.reject{|el| el.nil?}.length
   end
 
-  def add(el)
+  def add(el) # o(n) time because iteration needed to see if el is in cache already
     if is_el_present?(el)
       @cache.reject!{|el_in_cache| el_in_cache == el}.push(el)
     else
