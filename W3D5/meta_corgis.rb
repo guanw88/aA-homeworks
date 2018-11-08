@@ -110,9 +110,17 @@ class MetaCorgiSnacks
   end
 
   def method_missing(name, *args)
-    # Your code goes here...
+    method_name = name.to_s
+    if ["bone","kibble","treat"].include?(method_name)
+      snack_type = method_name
+      info = @snack_box.send("get_#{snack_type}_info", @box_id)
+      tastiness = @snack_box.send("get_#{snack_type}_tastiness",@box_id)
+      result = "#{snack_type.capitalize}: #{info}: #{tastiness}"
+      tastiness > 30 ? "* #{result}" : result
+    else
+      super
+    end
   end
-
 
   def self.define_snack(name)
     # Your code goes here...
