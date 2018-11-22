@@ -31,17 +31,17 @@ Elephant.prototype.addTrick = function(trick) {
 }
 
 Elephant.prototype.play = function() {
-  console.log(this.tricks[Math.floor(Math.random() * this.tricks.length)]);
+  console.log(`${this.name} is ${this.tricks[Math.floor(Math.random() * this.tricks.length)]}!`);
 }
 
 // let ellie = new Elephant("Ellie", 185, ["giving human friends a ride", "playing hide and seek"]);
-// ellie.trumpet();
-// console.log(ellie.height);
-// ellie.grow();
-// console.log(ellie.height);
-// console.log(ellie.tricks);
-// ellie.addTrick("playing memory games");
-// console.log(ellie.tricks);
+// // ellie.trumpet();
+// // console.log(ellie.height);
+// // ellie.grow();
+// // console.log(ellie.height);
+// // console.log(ellie.tricks);
+// // ellie.addTrick("playing memory games");
+// // console.log(ellie.tricks);
 // ellie.play()
 // ellie.play()
 // ellie.play()
