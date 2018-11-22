@@ -75,13 +75,18 @@ madLib('make', 'best', 'guac');
 // > isSubstring("Jump for joy", "joys")
 // false
 
+// function isSubstring(searchString, subString) {
+//   for (var i = 0; i <= (searchString.length - subString.length); i++) {
+//     if (searchString.slice(i, i + subString.length) === subString) {
+//       return true
+//     }
+//   }
+//   return false
+// }
+
 function isSubstring(searchString, subString) {
-  for (var i = 0; i <= (searchString.length - subString.length); i++) {
-    if (searchString.slice(i, i + subString.length) === subString) {
-      return true
-    }
-  }
-  return false
+  return searchString.includes(subString)
 }
+
 console.log(isSubstring("time to program", "time"));
 console.log(isSubstring("Jump for joy", "joys"));
