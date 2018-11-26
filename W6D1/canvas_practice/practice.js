@@ -6,7 +6,17 @@ document.addEventListener("DOMContentLoaded", function(){
   canvas.heigth = 500;
   ctx = canvas.getContext('2d');
 
-  // Create blue rectangle
+  // Draw blue rectangle
   ctx.fillStyle = 'blue';
-  ctx.fillRect(10, 10, 100, 100);
+  ctx.fillRect(10, 10, 200, 100); // left pos, right pos, width, height
+
+  // Overlay red circle
+  ctx.beginPath();
+  ctx.arc(60, 60, 50, 0, 2 * Math.PI);
+  ctx.strokeStyle = 'red';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+  ctx.fillStyle = 'red';
+  ctx.fill();
+
 });
