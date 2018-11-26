@@ -19,4 +19,12 @@ document.addEventListener("DOMContentLoaded", function(){
   ctx.fillStyle = 'red';
   ctx.fill();
 
+  // Make yellow triangle
+  ctx.beginPath();
+  ctx.moveTo(160, 10);
+  ctx.lineTo(100, 75);
+  ctx.lineTo(100, 25);
+  ctx.fillStyle = 'yellow';
+  ctx.fill();
+
 });
