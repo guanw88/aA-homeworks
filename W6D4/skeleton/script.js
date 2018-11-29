@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // toggle photo add form
   const togglePhotoForm = (e) => {
-    debugger
     const photoForm = document.getElementsByClassName("photo-form-container")[0]
     if (photoForm.classList.contains("hidden")){
       photoForm.classList.remove("hidden");
@@ -39,7 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".photo-show-button").addEventListener("click", togglePhotoForm);
 
   // adding new photos
+  const addPhoto = (e) => {
+    e.preventDefault();
+    const dogPhotoUL = document.getElementsByClassName("dog-photos")[0];
+    const dogPhotoLI = document.createElement("li");
+    const dogPhotoIMG = document.createElement("img");
+    dogPhotoIMG.setAttribute("src", document.getElementsByClassName("photo-url-input")[0].value)
+    dogPhotoLI.appendChild(dogPhotoIMG);
+    dogPhotoUL.appendChild(dogPhotoLI);
+  }
 
+  document.querySelector(".photo-url-submit").addEventListener("click", addPhoto);
 
 
 });
