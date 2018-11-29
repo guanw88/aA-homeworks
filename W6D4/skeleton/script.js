@@ -15,10 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-
   // adding SF places as list items
 
-  // --- your code here!
+ const addLi = (e) => {
+   e.preventDefault();
+   const ul = document.getElementById("sf-places");
+   const li = document.createElement("li");
+   const textField = document.getElementsByClassName("favorite-input")[0];
+   li.textContent = textField.value;
+   ul.appendChild(li);
+ };
+
+ document.querySelector(".favorite-submit").addEventListener("click", addLi);
 
 
 
