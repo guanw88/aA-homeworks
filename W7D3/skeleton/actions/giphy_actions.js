@@ -7,10 +7,10 @@ export const receiveSearchGiphys = (giphys) => {
   return {
     type: RECEIVE_SEARCH_GIPHYS,
     giphys
-  }
+  };
 };
 
-export const fetchSearchGiphys = searchTerm => next => dispatch {
+export const fetchSearchGiphys = (searchTerm) => dispatch => {
   APIUtil.fetchSearchGiphys(searchTerm)
-    .then( (res) => dispatch(receiveSearchGiphys(res.data));
+    .then( (res) => dispatch(receiveSearchGiphys(res.data)) );
 };
