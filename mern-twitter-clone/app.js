@@ -5,11 +5,11 @@ const users = require("./routes/api/users");
 const tweets = require("./routes/api/tweets");
 const bodyParser = require('body-parser');
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.get("/", (req,res) => res.send("Hello World!"));
 app.use("/api/users", users);
 app.use("/api/tweets", tweets);
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 const db = require('./config/keys').mongoURI;
 
